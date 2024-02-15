@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'path';
 import matter from 'gray-matter';
+import React from 'react';
 
 const NONEXISTENT_POST = {
     frontmatter: {
@@ -34,7 +35,7 @@ export async function getBlogPostList() {
     );
 }
 
-export async function loadBlogPost(slug) {
+export const loadBlogPost = React.cache(async function (slug) {
     const blogFile = `/content/${slug}.mdx`;
     if (!isFileExist(blogFile))
         return NONEXISTENT_POST;
@@ -45,7 +46,7 @@ export async function loadBlogPost(slug) {
         matter(rawContent);
 
     return { frontmatter, content };
-}
+});
 
 function isFileExist(localPath) {
     return existsSync(

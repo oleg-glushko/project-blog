@@ -90,3 +90,43 @@ The final result should look like this:
 - [next-mdx-remote docs](https://github.com/hashicorp/next-mdx-remote#react-server-components-rsc--nextjs-app-directory-support)
   - **Be sure to use the _RSC_ version of the package!**
 - [“Dynamic Segments” lesson](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/04.03-dynamic-segments)
+
+---
+
+## Exercise 3: Adding metadata
+
+As we learned in Module 6, the [Next.js Metadata API](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/05-metadata) allows us to specify site metadata, like adding a `<title>` tag, or various `<meta>` tags. Let's use this API to add metadata to our blog.
+
+For example, here's the metadata we should include, in the `<head>`:
+
+```html
+<title>Bits & Bytes</title>
+<meta
+  name="description"
+  content="A wonderful blog about JavaScript"
+/>
+```
+
+And on the blog post page, it should look something like this:
+
+```html
+<title>
+  Understanding the JavaScript Modulo Operator • Bits & Bytes
+</title>
+<meta
+  name="description"
+  content="One of the most commonly-misunderstood operators…"
+/>
+```
+
+**Acceptance Criteria:**
+
+- The homepage and blog post pages should include the metadata specified above.
+  - For the blog post page, the metadata should match the particular blog post. The `<title>` should include the blog post's `title`, and the `<meta name="description">` should use the `abstract`.
+- The name of the blog, “Bits & Bytes”, shouldn't be hardcoded. It should use the `BLOG_TITLE` constant found in `/src/constants.js`.
+- Performance should be optimized, as necessary, using the React Cache API.
+
+**Resources:**
+
+- [“Next.js Metadata API” lesson](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/05-metadata)
+- [Next Metadata API official docs](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
