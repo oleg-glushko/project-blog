@@ -1,6 +1,15 @@
 import fs from 'fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'path';
 import matter from 'gray-matter';
+
+const NONEXISTENT_POST = {
+    frontmatter: {
+        title: "This post doesn't exist",
+        publishedOn: new Date(0),
+    },
+    content: "",
+};
 
 export async function getBlogPostList() {
     const fileNames = await readDirectory('/content');
@@ -26,14 +35,21 @@ export async function getBlogPostList() {
 }
 
 export async function loadBlogPost(slug) {
-    const rawContent = await readFile(
-        `/content/${slug}.mdx`
-    );
+    const blogFile = `/content/${slug}.mdx`;
+    if (!isFileExist(blogFile))
+        return NONEXISTENT_POST;
+
+    const rawContent = await readFile(blogFile);
 
     const { data: frontmatter, content } =
         matter(rawContent);
 
     return { frontmatter, content };
+}
+
+function isFileExist(localPath) {
+    return existsSync(
+        path.join(process.cwd(), localPath));
 }
 
 function readFile(localPath) {
