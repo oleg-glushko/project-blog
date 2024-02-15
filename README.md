@@ -42,3 +42,22 @@ npm run new-component [TheNewComponentName]
 
 - Please make sure you're using Node.js version 18.17 or higher. This is the minimum Node version required by Next.js.
   - You can find your current Node version by running `node -v` in a terminal. If the value is less than 18.17, you'll want to upgrade Node to the [current LTS (Long Term Support) version](https://nodejs.org/en).
+
+
+---
+
+## Exercise 1: Homepage list of posts
+
+Let's update the homepage so that it shows a list of blog posts:
+
+![Screenshot showing the homepage with a reverse-chronological list of blog posts](/docs/homepage-list-of-posts.png)
+
+**Acceptance Criteria:**
+
+- One `<BlogSummaryCard>` element should be rendered for each MDX file in the `/content` directory.
+- A unique `key` should be given to each element.
+- Each `<BlogSummaryCard>` element should be given the following props:
+  - `slug`, matching the filename (eg. `javascript-modulo-operator`)
+  - `title`, `abstract`, and `publishedOn`, all passed along from the frontmatter for each post.
+
+**Note:** To help with some of the Node file-manipulation stuff, a helper module has been provided, `/src/helpers/file-helpers.js`. You can use the `getBlogPostList` function to gather the full list of blog posts. Alternatively, if you some experience using Node, feel free to solve this exercise without using this helper.
