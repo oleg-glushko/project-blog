@@ -130,3 +130,27 @@ And on the blog post page, it should look something like this:
 
 - [“Next.js Metadata API” lesson](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/05-metadata)
 - [Next Metadata API official docs](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
+
+---
+
+## Exercise 4: Code snippets with Bright
+
+Our MDX files include code snippets. By default, they'll be rendered by `<MDXRemote>` as a `<pre>` tag. This _works_, but it's not very ✨ aesthetic ✨. We can improve the presentation using [Bright](https://bright.codehike.org/), the React-Server-Components-based syntax highlighter we saw in Module 6.
+
+This package is already installed in this repository, and is being used inside the `/src/components/CodeSnippet` component. Your mission in this exercise is to render this `CodeSnippet` component for every code snippet inside the MDX files.
+
+The end result should look like this:
+
+![Screenshot of the code snippets with correct syntax highlighting](/docs/bright-syntax-highlighting.png)
+
+**Acceptance Criteria:**
+
+- Code snippets inside blog posts should be syntax-highlighted.
+- You should use the `CodeSnippet` component, found in `/src/components/CodeSnippet`
+
+**Resources:**
+
+- [Bright docs](https://bright.codehike.org/)
+- [“MDX in Next.js” lesson](https://courses.joshwcomeau.com/joy-of-react/project-blog/01.02-mdx-in-next)
+- [next-mdx-remote docs](https://github.com/hashicorp/next-mdx-remote#custom-components)
+- [“Revealable Code Snippets” exercise](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/03.04-client-components-exercises#revealable-code-snippets-with-bright)
