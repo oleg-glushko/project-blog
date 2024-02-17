@@ -154,3 +154,101 @@ The end result should look like this:
 - [“MDX in Next.js” lesson](https://courses.joshwcomeau.com/joy-of-react/project-blog/01.02-mdx-in-next)
 - [next-mdx-remote docs](https://github.com/hashicorp/next-mdx-remote#custom-components)
 - [“Revealable Code Snippets” exercise](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/03.04-client-components-exercises#revealable-code-snippets-with-bright)
+
+---
+
+## Exercise 5: Animated division widget
+
+So far, our blog posts don't really feature anything super custom. Let's change that.
+
+The “Understanding the JavaScript Modulo Operator” blog post makes use of two different embedded widgets. In this exercise, we'll focus on the first one, `DivisionGroupsDemo`.
+
+**This is a significant challenge.** To help keep things a bit more manageable, we'll break this exercise up into 3 parts.
+
+
+### Exercise 5A: Rendering embedded components
+
+First thing's first, we need to get this component rendering!
+
+Inside the `javascript-modulo-operator.mdx` file, you'll notice that some code has been commented out:
+
+```md
+**TODO: Uncomment DivisionGroupsDemo**
+
+{/* <DivisionGroupsDemo /> */}
+```
+
+If you uncomment this code, you'll get an error telling you that next-mdx-remote doesn't know how to resolve the `DivisionGroupsDemo`.
+
+This component exists, and you can find it in `/src/components/DivisionGroupsDemo/DivisionGroupsDemo.js`. Your mission in the first part of this exercise is to resolve this component, fixing the issue and getting it rendering, like so:
+
+![Screen recording showing the embedded `DivisionGroupsDemo` component](/docs/division-groups-demo.png)
+
+**Acceptance Criteria:**
+
+- Within `javascript-modulo-operator.mdx`, the first `<DivisionGroupsDemo>` element should be uncommented, and rendering without issue.
+- Your solution should scale well, even if there are 100s of blog posts. You'll want to use _lazy loading_ to make sure that the `DivisionGroupsDemo` component is only downloaded when it's rendered.
+
+**Resources:**
+
+- [“MDX in Next.js” lesson](https://courses.joshwcomeau.com/joy-of-react/project-blog/01.02-mdx-in-next)
+- [next-mdx-remote docs](https://github.com/hashicorp/next-mdx-remote#custom-components)
+- [“Lazy Loading in Next”](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/10.01-lazy-loading-in-next)
+
+
+### Exercise 5B: Animations with Framer Motion
+
+As it stands, the `DivisionGroupsDemo` widget works alright, but it does feel pretty abrupt:
+
+![Screen recording showing the default behaviour, instant transitions](/docs/division-groups-default.gif)
+
+Let's implement some _layout animations_, so that the pink circles being grouped up glide smoothly when the number of groups changes:
+
+![Screen recording showing the new behaviour, smooth layout animations](/docs/division-groups-animated.gif)
+
+**Acceptance Criteria:**
+
+- When the number of groups changes, the pink circles should glide smoothly, using Framer Motion layout animations.
+- For now, you can ignore all of the stuff in the `includeRemainderArea` conditional; we'll deal with that in the next part of this exercise.
+- _This animation should respect user preferences._ If they've toggled the “Reduce motion” setting in their operating system, the pink circles should jump immediately into their new groups.
+  - To test this, you can use emulation inside the devtools. See the [“Motion Accessibility” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/05-accessibility) for more info.
+
+**Resources:**
+
+- [“Layout Animations” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/03-layout-animations)
+- [“Shared Layout” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/04-layout-id)
+- [“Working With Groups” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/04.01-layout-groups)
+- [“Motion Accessibility” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/05-accessibility)
+
+
+### Exercise 5C: Remainder area
+
+If you keep scrolling down inside `javascript-modulo-operator.mdx`, you'll notice another instance of `DivisionGroupsDemo` which has been commented out:
+
+```md
+**TODO: Uncomment DivisionGroupsDemo**
+
+{/* <DivisionGroupsDemo includeRemainderArea={true} numOfItems={11} initialNumOfGroups={4} /> */}
+```
+
+If you haven't already, you can uncomment this second `DivisionGroupsDemo` element. Your mission in this final part of the exercise is to ensure that the layout animations continue working as expected:
+
+![Screen recording showing the final animation](/docs/divison-groups-demo-with-remainder.gif)
+
+**There's a subtle thing here:** We want elements entering the Remainder Area to enter from the right, not the left. This GIF shows the difference:
+
+![Screen recording showing how elements should stack in the Remainder Area](/docs/division-groups-remainder-stack-direction.gif)
+
+**NOTE:** to help illustrate the difference, I've given the items different colors/shapes in this GIF. You don't need to incorporate this change; your items should all be pink circles.
+
+
+**Acceptance Criteria:**
+
+- In the second `DivisionGroupsDemo` element, a new “Remainder area” is added. The pink circles should be animated when moving to/from this remainder area, the same as they are when moving between groups.
+- The pink circles should be added to the _end_ of the remainder area, stacking on the right. They shouldn't "cross over" and sit at the front. See the GIF above for the exact effect we're after.
+
+**Resources:**
+
+- [“Layout Animations” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/03-layout-animations)
+- [“Shared Layout” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/04-layout-id)
+- [“Working With Groups” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/04.01-layout-groups)
