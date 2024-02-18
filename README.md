@@ -252,3 +252,30 @@ If you haven't already, you can uncomment this second `DivisionGroupsDemo` eleme
 - [“Layout Animations” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/03-layout-animations)
 - [“Shared Layout” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/04-layout-id)
 - [“Working With Groups” lesson](https://courses.joshwcomeau.com/joy-of-react/07-framer-motion/04.01-layout-groups)
+
+---
+
+## Exercise 6: Circular colors widget
+
+Our “Understanding the JavaScript Modulo Operator” blog post has one more embedded widget, `CircularColorsDemo`:
+
+![Screen recording of the `CircularColorsDemo` component](/docs/circular-colors-demo.gif)
+
+This widget demonstrates how the Modulo operator can be used to select items from an array in a circular manner. A timer climbs from 0 to infinity, and that linear value is used to pluck one of three colors, circling back to the front on each 3rd value.
+
+**None of the client-side logic has been implemented.** To solve this exercise, you'll need to rely on the fundamentals we saw back in Module 2 and Module 3.
+
+**Acceptance Criteria:**
+
+- Clicking the “Play” button should start a long-running process which increments the `timeElapsed` value by 1 every second, like a stopwatch.
+- The `selectedColor` should be calculated using the `timeElapsed`. It's shown as a black rectangle around 1 of the colors, and it should cycle through the 3 colors as shown in the GIF above.
+- When the stopwatch is running, the “Play” button should switch to a “Pause” button, using the `Pause` icon. Clicking the “Pause” button should stop the timer.
+- Clicking the “Reset” button should stop the timer, and reset the `timeElapsed` to 0.
+- A layout animation should be used on the `selectedColor` outline, causing it to glide smoothly between the 3 colors.
+  - Like all layout animations, this should be disabled if the user has enabled the “Reduce motion” setting.
+
+**Resources:**
+
+- [The blog post itself!](https://project-blog-dun.vercel.app/javascript-modulo-operator) This is very meta, but the blog post we've been working on details how the Modulo operator works, and you'll want to use this operator in your solution.
+- [“Side Effects” set of lessons from Module 3](https://courses.joshwcomeau.com/joy-of-react/03-hooks/05-effects)
+  - In particular, the [“Digital Clock” Exercise](https://courses.joshwcomeau.com/joy-of-react/03-hooks/05.07-cleanup-exercises#digital-clock) might be helpful.
