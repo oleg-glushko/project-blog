@@ -346,3 +346,37 @@ To generate the RSS feed itself, you can use an NPM dependency. I use the [rss](
 To get the list of blog posts, you can reuse the `getBlogPostList` function we saw in Exercise 1.
 
 If you opt to go the “on-demand” route, you'll need to set a specific header for everything to work correctly: `Content-Type: application/xml`. You can set headers using a `Response` object, as detailed in the [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) docs.
+
+---
+
+### Stretch goal 2: Handling invalid URLs
+
+In this project, we're using a dynamic route segment for the `postSlug`. We look up the blog post based on this route parameter.
+
+But what if the user enters an invalid slug? For example, maybe they make a typo and try to visit `/javascritp-mdoulo-operatro`. Or enter a complete gibberish URL like `/fdjsmkl`.
+
+As it stands, we get a pretty funky error:
+
+> _Error: ENOENT: no such file or directory, open '/project-blog/content/fdjsmkl.mdx'_
+
+Your mission in this exercise is to instead render a “404 not found” page:
+
+![Screenshot of the 404 page](/docs/404-page.png)
+
+**Acceptance Criteria:**
+
+- Visiting an invalid URL should show the user a 404-style error.
+- It isn't sufficient to render an `<h1>404 Not Found</h1>` within the `page.js` component. We want to render an _actual_ 404 page, with a 404 status code and the correct meta tags. This is important for SEO.
+
+**Gotchas:**
+
+There's two things to be aware of, before you start work on this:
+
+- Next has an official way of handling 404 errors, but it changed recently. In the old “Pages” router, we created 404 pages using a special `404.js` file. This is _not_ how we do things in the newer App Router. Instead, we want to use the `not-found.js` file. See the docs links below.
+- There's [an open bug](https://github.com/vercel/next.js/issues/48609) when it comes to putting `not-found.js` components inside dynamic routes. It doesn't currently work. And so, we'll solve this problem with a _global_ `not-found.js` file.
+
+**Tips and hints:**
+
+To signal to Next that a 404 page should be triggered, you'll want to invoke the [notFound() function](https://nextjs.org/docs/app/api-reference/functions/not-found). By default, this shows a not-very-aesthetic 404 message. We can replace this by creating a [`not-found.js` file](https://nextjs.org/docs/app/api-reference/file-conventions/not-found) inside our `/app` directory.
+
+So far in this project, all of the styles have been provided, but in this case, no styles exist. Feel free to create a new CSS Module for the `not-found` styles.

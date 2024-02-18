@@ -6,7 +6,7 @@ import React from 'react';
 
 const NONEXISTENT_POST = {
     frontmatter: {
-        title: "This post doesn't exist",
+        title: null,
         publishedOn: "1970-01-01T00:00:00-0000",
     },
     content: "",
