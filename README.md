@@ -300,3 +300,49 @@ Inside the root layout (`/src/app/layout.js`), you'll see that the theme is curr
 **Resources:**
 
 - [“Dark Mode” lesson](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/11-dark-mode)
+
+---
+
+## Stretch goals
+
+Phew! We've made it through the full set of standard exercises.
+
+There's a couple more things we should do to make this blog feel a bit more complete. **I'll warn you now: I haven't shown you how to solve the exercises in this section.** You'll need to do some additional research and experimentation to figure out how to solve these problems.
+
+Don't worry, though: I'll be sure to point you in the right direction, and I'll share my solution so you can see how I'd solve these problems.
+
+### Stretch goal 1: RSS Feed
+
+A surprising number of people prefer to read blog posts using an RSS reader. An RSS reader is a piece of software that lets users follow specific blogs, to be notified when new content is published.
+
+For example, [Feedly](https://feedly.com/) is an RSS reader showing new posts from some of the blogs I follow:
+
+![Screenshot of “Feedly”, an RSS reader](/docs/feedly.png)
+
+In order for people to add our blog to their RSS readers, we need to produce an RSS feed. This is an XML document that contains all the info these readers need. For example, you can check out the RSS feed I publish on my official blog here:
+
+- [https://joshwcomeau.com/rss.xml](https://joshwcomeau.com/rss.xml)
+
+Our blog currently includes a link to the RSS feed, using the typical RSS icon:
+
+![Screenshot of the site header, showing the RSS icon](/docs/rss-icon.png)
+
+Right now, it links to a feed that doesn't exist. Your mission in this stretch goal should be to produce an RSS feed.
+
+**Acceptance Criteria:**
+
+- Visiting `/rss.xml` should return an XML document that lists out all of the posts, in reverse-chronological order (newest posts first).
+
+**Tips and hints:**
+
+There are two viable approaches here:
+
+1. You can generate the XML file during the build, dropping the XML file in the `/public` directory. You can use a `prebuild` NPM script to automatically do some work before the `build` script runs. See the [NPM docs](https://docs.npmjs.com/cli/v9/using-npm/scripts#pre--post-scripts) for more information.
+
+2. You can generate the XML file on-demand, when the user visits `/rss.xml`, using a Next.js [Route Handler](https://nextjs.org/docs/app/building-your-application/routing/route-handlers). Route handlers allow us to build API endpoints that run on the server and can do things like generate custom responses.
+
+To generate the RSS feed itself, you can use an NPM dependency. I use the [rss](https://www.npmjs.com/package/rss) NPM package. It's fantastic.
+
+To get the list of blog posts, you can reuse the `getBlogPostList` function we saw in Exercise 1.
+
+If you opt to go the “on-demand” route, you'll need to set a specific header for everything to work correctly: `Content-Type: application/xml`. You can set headers using a `Response` object, as detailed in the [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) docs.
