@@ -279,3 +279,24 @@ This widget demonstrates how the Modulo operator can be used to select items fro
 - [The blog post itself!](https://project-blog-dun.vercel.app/javascript-modulo-operator) This is very meta, but the blog post we've been working on details how the Modulo operator works, and you'll want to use this operator in your solution.
 - [“Side Effects” set of lessons from Module 3](https://courses.joshwcomeau.com/joy-of-react/03-hooks/05-effects)
   - In particular, the [“Digital Clock” Exercise](https://courses.joshwcomeau.com/joy-of-react/03-hooks/05.07-cleanup-exercises#digital-clock) might be helpful.
+
+---
+
+## Exercise 7: Dark mode
+
+Inside the site header, we have a little sun icon. As of right now, it doesn't do anything. Your mission in this exercise is to wire it up so that it toggles between light mode and dark mode:
+
+![Toggling between light mode and dark mode](/docs/dark-mode-toggle.gif)
+
+Inside the root layout (`/src/app/layout.js`), you'll see that the theme is currently being hardcoded as `'light'`. If you manually change this value to `'dark'`, the site will flip to the dark mode color theme. Your mission is to expand this implementation so that it can be toggled by the user, with their preference being persisted.
+
+**Acceptance Criteria:**
+
+- Clicking the Sun icon in the header should immediately flip to the dark color theme.
+- The icon within this button should match the theme: a sun in light mode, a moon in dark mode.
+- The user's saved value should be remembered, so that if they refresh the page, the colors don't change.
+  - This should be seamless, without any awkward “flash of light mode”, where the wrong colors are shown for a brief moment.
+
+**Resources:**
+
+- [“Dark Mode” lesson](https://courses.joshwcomeau.com/joy-of-react/06-full-stack-react/11-dark-mode)
